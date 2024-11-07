@@ -47,9 +47,9 @@ predict(Ma, data.frame(Age=20), interval="confidence")
 predict(Ma, data.frame(Age=20), interval="prediction")
 
 
-opar <- par(mfrow = c(2,3))
+opar <- par(mfrow = c(2,3)
 plot(Ma, which=c(1:6), las = 1) 
-par(opar)
+par(opar))
 
 Age <- seq(min(Age), max(Age),0.1)
 Pc <- predict(Ma, data.frame(Age), interval="confidence")
