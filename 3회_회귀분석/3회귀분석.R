@@ -19,7 +19,7 @@ abline(coef(Ma))
 summary(Ma)
 anova(Ma)
 
-deviance(Ma)       # 또는 
+deviance(Ma)       # sse 값 반환 또는 
 sum( ( Max - predict(Ma))^2)
 
 str(Ma)
@@ -43,13 +43,13 @@ predict(Ma, interval="confidence",level = 0.95)
 predict(Ma, interval="prediction",level = 0.95)
   
 predict(Ma, data.frame(Age=20))
-predict(Ma, data.frame(Age=20), interval="confidence")
-predict(Ma, data.frame(Age=20), interval="prediction")
+predict(Ma, data.frame(Age=20), interval="confidence") #모델이 예측한 평균값이 신뢰구간 내에 있을 확률
+predict(Ma, data.frame(Age=20), interval="prediction") # 실제 y 값이 어느 구간에 있을 확률률
 
 
-opar <- par(mfrow = c(2,3)
-plot(Ma, which=c(1:6), las = 1) 
-par(opar))
+opar <- par(mfrow = c(2,3))
+plot(Ma, which=c(1:6), las = 1)
+par(opar)
 
 Age <- seq(min(Age), max(Age),0.1)
 Pc <- predict(Ma, data.frame(Age), interval="confidence")
@@ -60,7 +60,7 @@ matlines(Age, Pp, type='l', lty=2,col=c("black", "red", "red"))
 
 #다중선형회귀분석
 # 자료 mtcars 사용
-#install.packages("car")
+install.packages("car")
 library(car)
 head(mtcars, 5L)
 str(mtcars)
@@ -73,7 +73,7 @@ confint(Fit, level=0.95) # CIs for model parameters
 fitted(Fit) # predicted values
 residuals(Fit) # residuals
 anova(Fit) # anova table 
-vcov(Fit) # covariance matrix for model parameters 
+vcov(Fit) # covariance matrix for model parameters 공분산 행렬
 influence(Fit) # regression diagnostics 
 
 # 이상치 판단에 유용한 함수들
